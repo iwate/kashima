@@ -1,6 +1,6 @@
 Kashima
 ===
-!(master)[https://ci.appveyor.com/api/projects/status/ja84vdl13imnedui/branch/master?svg=true)
+![master](https://ci.appveyor.com/api/projects/status/ja84vdl13imnedui/branch/master?svg=true)
 
 Kashima is Data structure library
 
