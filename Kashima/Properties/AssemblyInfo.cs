@@ -8,11 +8,15 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Kashima")]
 [assembly: AssemblyDescription("Data structure library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("iwate")]
 [assembly: AssemblyProduct("Kashima")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: AssemblyMetadata("ProjectUrl", "https://github.com/iwate/kashima")]
+[assembly: AssemblyMetadata("LicenseUrl", "https://github.com/iwate/kashima")]
+[assembly: AssemblyMetadata("Tags", "BTree")]
+[assembly: AssemblyMetadata("ReleaseNotes", "Initial.")]
 
 // ComVisible を false に設定すると、その型はこのアセンブリ内で COM コンポーネントから 
 // 参照不可能になります。COM からこのアセンブリ内の型にアクセスする場合は、
