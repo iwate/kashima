@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kashima", "Kashima\Kashima.csproj", "{39C3B18A-DAA1-4261-A3E0-DB1C9C67BE8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F6534587-D7D2-4E25-829D-FCFE692365C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{39C3B18A-DAA1-4261-A3E0-DB1C9C67BE8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39C3B18A-DAA1-4261-A3E0-DB1C9C67BE8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39C3B18A-DAA1-4261-A3E0-DB1C9C67BE8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6534587-D7D2-4E25-829D-FCFE692365C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6534587-D7D2-4E25-829D-FCFE692365C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6534587-D7D2-4E25-829D-FCFE692365C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6534587-D7D2-4E25-829D-FCFE692365C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
