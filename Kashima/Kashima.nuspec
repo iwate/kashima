@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/iwate/kashima</licenseUrl>
+    <projectUrl>https://github.com/iwate/kashima</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$descriptions$</description>
+    <releaseNotes>Setup CI/CD in Appveyor</releaseNotes>
+    <copyright>Copyright © $author$ 2016</copyright>
+    <tags>BTree</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\*.*" target="lib\net45" />
+  </files>
+</package>
