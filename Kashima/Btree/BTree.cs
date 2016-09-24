@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Kashima.BTree
 {
-    public partial class BTree<TKey, TValue>
+    public partial class BPlusTree<TKey, TValue>
         where TKey : IComparable<TKey>
     {
         const int DEFAULT_MAX_CHILDREN_PER_NODE = 1000;
@@ -11,15 +11,15 @@ namespace Kashima.BTree
         int max;
         Node<TKey, TValue> root;
 
-        public BTree() : this(DEFAULT_MAX_CHILDREN_PER_NODE)
+        public BPlusTree() : this(DEFAULT_MAX_CHILDREN_PER_NODE)
         {
         }
-        public BTree(int maxChildrenPerNode)
+        public BPlusTree(int maxChildrenPerNode)
         {
             max = maxChildrenPerNode;
             root = new Node<TKey, TValue>(max);
         }
-        public BTree(IEnumerable<KeyValuePair<TKey, TValue>> data, int maxChildrenPerNode = DEFAULT_MAX_CHILDREN_PER_NODE)
+        public BPlusTree(IEnumerable<KeyValuePair<TKey, TValue>> data, int maxChildrenPerNode = DEFAULT_MAX_CHILDREN_PER_NODE)
             :this(maxChildrenPerNode)
         {
             foreach (var datum in data)

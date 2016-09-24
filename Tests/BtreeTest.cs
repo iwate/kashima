@@ -30,7 +30,7 @@ namespace Tests
             Log($"linq joined count={linq.Length}, time={sw.ElapsedMilliseconds}[ms]");
             sw.Reset();
             
-            var btree = new BTree<long, long>(Samples.ToDictionary(d => d.Key, d => d.Key));
+            var btree = new BPlusTree<long, long>(Samples.ToDictionary(d => d.Key, d => d.Key));
 
             sw.Start();
             var result = Join(Samples, Samples, o => o.Id, i => i.Id, (o, i) => new { Outer = o, Inner = i }, btree).ToArray();
@@ -54,7 +54,7 @@ namespace Tests
             Log($"linq whered count={linq.Length}, time={sw.ElapsedMilliseconds}[ms]");
             sw.Reset();
             
-            var btree = new BTree<DateTime, long>();
+            var btree = new BPlusTree<DateTime, long>();
             foreach(var s in Samples)
             {
                 btree.Add(s.Value.DateTime, s.Key);
@@ -76,7 +76,7 @@ namespace Tests
             Func<TOuter, TIndex> outKeySelector,
             Func<TInner, TIndex> innerKeySelector,
             Func<TOuter, TInner, TResult> resultSelector,
-            BTree<TIndex, TKey> btree)
+            BPlusTree<TIndex, TKey> btree)
             where TIndex : IComparable<TIndex>
         {
             var outerEnum = outer.GetEnumerator();
