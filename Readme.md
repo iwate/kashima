@@ -9,7 +9,7 @@ sample:
 public static void Main(string[] args)
 {
   var samples = CreateSamples(100000).ToDictionary(s => s.Id, s => s);
-  var btree = new BTree<DateTime, long>();
+  var btree = new BPlusTree<DateTime, long>();
   foreach(var s in Samples)
   {
       btree.Add(s.Value.DateTime, s.Key);
