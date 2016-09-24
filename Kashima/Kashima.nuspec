@@ -9,7 +9,7 @@
     <licenseUrl>https://github.com/iwate/kashima</licenseUrl>
     <projectUrl>https://github.com/iwate/kashima</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$descriptions$</description>
+    <description>$description$</description>
     <releaseNotes>Setup CI/CD in Appveyor</releaseNotes>
     <copyright>Copyright © $author$ 2016</copyright>
     <tags>BTree</tags>
