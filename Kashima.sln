@@ -12,7 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kashima.Reporting", "Kashima.Reporting\Kashima.Reporting.csproj", "{C237F83C-3359-4B4A-89D9-E4DDB05EC735}"
+EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -26,6 +31,10 @@ Global
 		{F6534587-D7D2-4E25-829D-FCFE692365C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6534587-D7D2-4E25-829D-FCFE692365C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6534587-D7D2-4E25-829D-FCFE692365C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C237F83C-3359-4B4A-89D9-E4DDB05EC735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C237F83C-3359-4B4A-89D9-E4DDB05EC735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C237F83C-3359-4B4A-89D9-E4DDB05EC735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C237F83C-3359-4B4A-89D9-E4DDB05EC735}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
