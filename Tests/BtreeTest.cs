@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System;
 using Kashima.BTree;
+using Newtonsoft.Json;
 
 namespace Tests
 {
@@ -67,6 +68,19 @@ namespace Tests
             sw.Reset();
 
             Assert.AreEqual(linq.Length, result.Length);
+        }
+
+        [TestMethod]
+        public void Serializable()
+        {
+            var btree = new BPlusTree<DateTime, long>();
+            foreach (var s in Samples)
+                btree.Add(s.Value.DateTime, s.Key);
+
+            var json = JsonConvert.SerializeObject(btree.RootNode);
+            var node = JsonConvert.DeserializeObject<Node<DateTime, long>?>(json);
+            var @new = new BPlusTree<DateTime, long>(node);
+            Assert.AreNotEqual(0, @new.RootNode.Value.Count);
         }
 
         #region helpers
