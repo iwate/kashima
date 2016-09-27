@@ -1,22 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kashima.BTree
 {
+    /// <summary>
+    /// B+Tree data structure
+    /// </summary>
+    /// <typeparam name="TKey">Key type</typeparam>
+    /// <typeparam name="TValue">Value type</typeparam>
     public class BPlusTree<TKey, TValue>
         where TKey : IComparable<TKey>
     {
         const int DEFAULT_SIZE = 10000;
-        public int ChildrenSize { get; private set; }
+        /// <summary>
+        /// Tree height
+        /// </summary>
         public int Height { get; private set; }
+
+        /// <summary>
+        /// RootNode
+        /// You should not get this property in high frequency because struct value coping is hight cost.
+        /// </summary>
+        public Node<TKey, TValue>? RootNode { get { return Root; } }
         NodeComparer<TKey, TValue> comparer = new NodeComparer<TKey, TValue>();
         Node<TKey, TValue> Root;
+        int ChildrenSize;
         int HalfSize;
+
+        /// <summary>
+        /// B+tree constructor.
+        /// children size per node is set DEFAULT_SIZE = 10000
+        /// </summary>
         public BPlusTree() : this(DEFAULT_SIZE) { }
+
+        /// <summary>
+        /// B+tree constructor.
+        /// </summary>
+        /// <param name="size">Children size per node</param>
         public BPlusTree(int size)
         {
             Root.Type = NodeType.Node;
@@ -24,10 +44,37 @@ namespace Kashima.BTree
             ChildrenSize = size;
             HalfSize = size / 2;
         }
+
+        /// <summary>
+        /// B+tree constructor.
+        /// </summary>
+        /// <param name="data">key values</param>
+        /// <param name="size">Children size per node</param>
         public BPlusTree(IEnumerable<KeyValuePair<TKey, TValue>> data, int size = DEFAULT_SIZE) : this(size)
         {
             foreach (var datum in data)
                 Add(datum.Key, datum.Value);
+        }
+
+        /// <summary>
+        /// B+tree constructor.
+        /// </summary>
+        /// <param name="root">Initial node</param>
+        public BPlusTree(Node<TKey, TValue>? root)
+        {
+            if (!root.HasValue)
+                throw new ArgumentNullException();
+            Root = root.Value;
+            ChildrenSize = Root.Children.Length;
+            Height = getHeight(ref Root);
+        }
+
+        int getHeight(ref Node<TKey, TValue> node)
+        {
+            if (node.Children[0].Type == NodeType.Leaf)
+                return 1;
+            else
+                return 1 + getHeight(ref node.Children[0]);
         }
 
         Node<TKey, TValue> div(ref Node<TKey, TValue> node)
@@ -128,7 +175,11 @@ namespace Kashima.BTree
         }
 
 
-
+        /// <summary>
+        /// Find values by key
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <returns>values</returns>
         public IEnumerable<TValue> Find(TKey key)
         {
             if (Root.Count == 0)
@@ -189,6 +240,12 @@ namespace Kashima.BTree
             }
             return ret;
         }
+
+        /// <summary>
+        /// Get values which are less than param.
+        /// </summary>
+        /// <param name="lt"></param>
+        /// <returns>values</returns>
         public IEnumerable<TValue> Lt(TKey lt)
         {
             if (Root.Children.Length == 0)
@@ -203,6 +260,12 @@ namespace Kashima.BTree
 
             return search(ref Root, predicate);
         }
+
+        /// <summary>
+        /// Get values which are less than and equals to param.
+        /// </summary>
+        /// <param name="le"></param>
+        /// <returns></returns>
         public IEnumerable<TValue> Le(TKey le)
         {
             if (Root.Children.Length == 0)
@@ -217,6 +280,12 @@ namespace Kashima.BTree
 
             return search(ref Root, predicate);
         }
+
+        /// <summary>
+        /// Get values which are greeter than param.
+        /// </summary>
+        /// <param name="gt"></param>
+        /// <returns></returns>
         public IEnumerable<TValue> Gt(TKey gt)
         {
             if (Root.Children.Length == 0)
@@ -231,6 +300,12 @@ namespace Kashima.BTree
 
             return search(ref Root, predicate);
         }
+
+        /// <summary>
+        /// Get values which are greeter than and equals to param.
+        /// </summary>
+        /// <param name="ge"></param>
+        /// <returns>values</returns>
         public IEnumerable<TValue> Ge(TKey ge)
         {
             if (Root.Children.Length == 0)
@@ -245,6 +320,7 @@ namespace Kashima.BTree
 
             return search(ref Root, predicate);
         }
+        
         public IEnumerable<TValue> GtAndLt(TKey gt, TKey lt)
         {
             var c = gt.CompareTo(lt);
@@ -265,6 +341,7 @@ namespace Kashima.BTree
 
             return search(ref Root, predicate);
         }
+        
         public IEnumerable<TValue> GeAndLt(TKey ge, TKey lt)
         {
             var c = ge.CompareTo(lt);
@@ -286,6 +363,7 @@ namespace Kashima.BTree
 
             return search(ref Root, predicate);
         }
+        
         public IEnumerable<TValue> GtAndLe(TKey gt, TKey le)
         {
             var c = gt.CompareTo(le);
@@ -307,6 +385,13 @@ namespace Kashima.BTree
 
             return search(ref Root, predicate);
         }
+
+        /// <summary>
+        /// Between gt param and lt param.
+        /// </summary>
+        /// <param name="ge"></param>
+        /// <param name="le"></param>
+        /// <returns></returns>
         public IEnumerable<TValue> GeAndLe(TKey ge, TKey le)
         {
             var c = ge.CompareTo(le);
