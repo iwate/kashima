@@ -71,7 +71,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Serializable()
+        public void Created_tree_from_node_is_valid()
         {
             var btree = new BPlusTree<DateTime, long>();
             foreach (var s in Samples)
